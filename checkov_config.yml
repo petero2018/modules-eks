@@ -1,0 +1,13 @@
+skip-check:
+- CKV_K8S_31 #this check recommends using an annotation that will be removed on kubernetes 1.25 (https://kubernetes.io/docs/tutorials/clusters/seccomp/#create-a-pod-with-a-seccomp-profile-for-syscall-auditing)
+- CKV_K8S_15 #setting imagePullPolicy to IfNotPresent is not harmful since it doesn't try to pull docker image if it's already present
+- CKV_K8S_43 #we should avoid tags such as latest but using digests doesn't seem to be a good option since it is not clear which semver version we are using
+- CKV2_AWS_5 #tflint already checks if security groups are attached to another resource
+- CKV2_AWS_28 # we do not need WAF everywhere
+- CKV_AWS_226 # we don't want to force minor upgrades automatically for all databases since it might require some downtime
+- CKV_AWS_2 # we still use HTTP protocol for dev LB
+- CKV2_AWS_20 # We use HTTP protocol for DEV LB
+- CKV_TF_1 # We use tags rather than hashes here as a convention for referencing modules
+
+skip-path:
+  - venv
